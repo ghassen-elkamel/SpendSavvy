@@ -13,16 +13,13 @@ class LoginView extends GetView<LoginController> {
       body: DecoratedBox(
         decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(18.0),
-    gradient: const LinearGradient(
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
-    colors: [primaryColor, neutralColor],
-    ),),
+          color: neutralColor
+  ),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text('MoneySavvy', style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
+              const Text('MoneySavvy', style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold,color: primaryColor)),
               Form(
                 onWillPop: () async => false,
                 child: Column(
@@ -31,8 +28,7 @@ class LoginView extends GetView<LoginController> {
                       padding: const EdgeInsets.all(18.0),
                       child:AtomTextField(
                         labelText: 'Email',
-
-                     //   controller: controller.emailController,
+                        controller: controller.emailController,
                         onChanged: (value) {},
                         borderRadius: 10,
                         borderColor: primaryColor,
@@ -43,15 +39,17 @@ class LoginView extends GetView<LoginController> {
                       padding: const EdgeInsets.all(18.0),
                       child:AtomTextField(
                         labelText: 'Password',
-
-                        //controller: controller.passwordController,
+                        controller: controller.passwordController,
                         onChanged: (value) {},
                         borderRadius: 10,
                         borderColor: primaryColor,
+                        isObscureText: true,
                       ),
                     ),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        controller.login();
+                      },
                       style: TextButton.styleFrom(
 
                         padding: const EdgeInsets.symmetric(horizontal: 50),
@@ -59,7 +57,7 @@ class LoginView extends GetView<LoginController> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(18.0),
                         ),
-                        foregroundColor: Colors.white, backgroundColor: primaryColor,
+                        foregroundColor:white, backgroundColor: primaryColor,
                       ),
                       child: const Text('Login'),
                     ),
