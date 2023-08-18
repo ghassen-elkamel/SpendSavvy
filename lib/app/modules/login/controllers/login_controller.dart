@@ -7,8 +7,9 @@ import '../../../data/services/auth_service.dart';
 import '../../../routes/app_pages.dart';
 
 class LoginController extends GetxController {
-TextEditingController emailController = TextEditingController();
-TextEditingController passwordController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
   @override
   void onInit() {
     super.onInit();
@@ -23,6 +24,7 @@ TextEditingController passwordController = TextEditingController();
   void onClose() {
     super.onClose();
   }
+
   void login() async {
     if (emailController.text.isEmpty || passwordController.text.isEmpty) {
       showAtomSnackBar(
@@ -47,5 +49,4 @@ TextEditingController passwordController = TextEditingController();
       );
     }
   }
-
 }

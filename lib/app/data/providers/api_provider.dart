@@ -1,9 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
-
 import 'package:http/http.dart' as http;
-
 
 import '../../core/utils/constant.dart';
 import '../../data/providers/api_provider_helper.dart';
@@ -21,12 +19,11 @@ class ApiProvider {
   }
 
   Future<Map<String, dynamic>?> get(HttpParamsGetDelete params,
-      { int attempt = 0}) async {
+      {int attempt = 0}) async {
     dynamic responseJson;
     showLoadingAlert(withLoadingAlert: params.withLoadingAlert);
 
     try {
-
       final response = await http
           .get(
             getUri(params),
@@ -45,7 +42,7 @@ class ApiProvider {
   }
 
   Future<Map<String, dynamic>?> post(HttpParamsPostPut params,
-      { int attempt = 0}) async {
+      {int attempt = 0}) async {
     dynamic responseJson;
     dynamic response;
     showLoadingAlert(withLoadingAlert: params.withLoadingAlert);
@@ -70,7 +67,6 @@ class ApiProvider {
           attempt: attempt,
           callback: () => post(
                 params,
-
                 attempt: attempt + 1,
               ));
     } catch (exception) {
@@ -106,15 +102,18 @@ class ApiProvider {
   }
 
   Future<Map<String, dynamic>?> patch(HttpParamsPostPut params,
-      { int attempt = 0}) async {
+      {int attempt = 0}) async {
     dynamic responseJson;
     dynamic response;
     showLoadingAlert(withLoadingAlert: params.withLoadingAlert);
     Uri uri = getUri(params);
     try {
       if (params.isFormData) {
-        var request = await getFormDataRequest("PATCH", uri,
-            body: params.body, );
+        var request = await getFormDataRequest(
+          "PATCH",
+          uri,
+          body: params.body,
+        );
 
         var responseStream = await request.send();
 

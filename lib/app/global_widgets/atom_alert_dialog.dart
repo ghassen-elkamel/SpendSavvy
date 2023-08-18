@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
 import 'package:get/get.dart';
 
 import '../core/values/colors.dart';
-
-
 
 class AtomAlertDialog extends StatelessWidget {
   final IconData? icon;
@@ -74,34 +71,35 @@ class AtomAlertDialog extends StatelessWidget {
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          if(title != null)
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 16.0,),
-                            child: Text(title!, style: titleStyle ),
-                          ),
-                          if(icon != null)
-                          Padding(
-                            padding: const EdgeInsets.only(top: 8),
-                            child: Icon(
-                              icon,
+                          if (title != null)
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 16.0,
+                              ),
+                              child: Text(title!, style: titleStyle),
                             ),
-                          ),
-                          if(image != null)
-                          Padding(
-                            padding: const EdgeInsets.only(top: 8),
-                            child: SvgPicture.asset(
-                              "$image",
-                              height: 80,
-                              color: Colors.red,
+                          if (icon != null)
+                            Padding(
+                              padding: const EdgeInsets.only(top: 8),
+                              child: Icon(
+                                icon,
+                              ),
                             ),
-                          ),
-                          if(subTitle != null)
+                          if (image != null)
+                            Padding(
+                              padding: const EdgeInsets.only(top: 8),
+                              child: SvgPicture.asset(
+                                "$image",
+                                height: 80,
+                                color: Colors.red,
+                              ),
+                            ),
+                          if (subTitle != null)
                             Padding(
                               padding: const EdgeInsets.symmetric(
                                   vertical: 12.0, horizontal: 2),
                               child: Text(
                                 subTitle!,
-
                                 textAlign: subTitleAlign ?? TextAlign.center,
                               ),
                             ),

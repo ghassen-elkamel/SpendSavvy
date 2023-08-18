@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../global_widgets/atom_alert_dialog.dart';
-
-
 import '../values/colors.dart';
 
 showAlertDialog(
@@ -48,20 +46,15 @@ showAtomSnackBar(
       children: [
         Text(
           title.tr,
-
         ),
         InkWell(
           onTap: () => Get.closeCurrentSnackbar(),
-          child: const Icon(
-            Icons.close,
-            color: Colors.black
-          ),
+          child: const Icon(Icons.close, color: Colors.black),
         ),
       ],
     ),
     messageText: Text(
       message.tr,
-
     ),
     snackPosition: SnackPosition.TOP,
     margin: const EdgeInsets.only(
@@ -73,10 +66,7 @@ showAtomSnackBar(
     backgroundColor: white,
     duration: duration,
     borderRadius: 10,
-    icon: const Icon(
-      Icons.close,
-      color: Colors.black
-    ),
+    icon: const Icon(Icons.close, color: Colors.black),
     boxShadows: const [BoxShadow(color: white, blurRadius: 1)],
   );
 }

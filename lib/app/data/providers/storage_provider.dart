@@ -4,7 +4,6 @@ import 'package:localstorage/localstorage.dart';
 
 import '../../core/utils/constant.dart';
 
-
 class StorageHelper {
   static StorageHelper? _instance;
   late LocalStorage storage;

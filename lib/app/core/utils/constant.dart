@@ -7,5 +7,3 @@ const String storageGlobalKey = "SpendSavvy";
 const String storageAccessUser = "accessUser";
 
 const String storageLocale = "locale";
-
-

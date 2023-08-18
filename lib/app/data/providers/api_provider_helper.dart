@@ -2,12 +2,10 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-
 
 import '../../core/utils/constant.dart';
 import '../../core/utils/helpers.dart';
@@ -34,17 +32,15 @@ extension Helper on ApiProvider {
     switch (response.statusCode) {
       case 401:
         if (data != null && data["message"] != null) {
-
           AuthService authService = AuthService();
           if (attempt < 3 &&
               data["message"] is String &&
-    ( data["message"].contains("JWT")|| data["message"].contains("Unauthorized") )) {
-
+              (data["message"].contains("JWT") ||
+                  data["message"].contains("Unauthorized"))) {
             bool refreshed = await authService.refreshToken();
             if (refreshed) {
               return await callback.call();
             }
-
           }
 
           showAlertDialog(
@@ -64,10 +60,9 @@ extension Helper on ApiProvider {
               message = data["message"].join("\n");
             }
             showAlertDialog(
-              title: data.containsKey("error") ? data["error"] : null,
-              subTitle: message,
-                image: "icons/alert.svg"
-            );
+                title: data.containsKey("error") ? data["error"] : null,
+                subTitle: message,
+                image: "icons/alert.svg");
           }
         }
         return null;
@@ -129,7 +124,6 @@ extension Helper on ApiProvider {
     String method,
     Uri uri, {
     required Map<String, dynamic> body,
-
   }) async {
     String? token = AuthService.access?.accessToken;
     var request = http.MultipartRequest(method, uri);

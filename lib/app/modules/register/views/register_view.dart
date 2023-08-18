@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:spend_savvy/app/core/values/colors.dart';
 import 'package:spend_savvy/app/global_widgets/atom_text_field.dart';
 
+import '../../../core/values/colors.dart';
 import '../../../routes/app_pages.dart';
-import '../controllers/login_controller.dart';
+import '../controllers/register_controller.dart';
 
-class LoginView extends GetView<LoginController> {
-  const LoginView({Key? key}) : super(key: key);
+class RegisterView extends GetView<RegisterController> {
+  const RegisterView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class LoginView extends GetView<LoginController> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               const Padding(
-                padding: EdgeInsets.only(bottom: 130.0, top: 180),
+                padding: EdgeInsets.only(bottom: 80.0, top: 180),
                 child: Text('MoneySavvy',
                     style: TextStyle(
                         fontSize: 40,
@@ -32,7 +32,7 @@ class LoginView extends GetView<LoginController> {
               ),
               Container(
                 alignment: Alignment.bottomCenter,
-                height: Get.height * 0.6,
+                height: Get.height * 0.7,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.vertical(
                     top: Radius.lerp(
@@ -50,7 +50,7 @@ class LoginView extends GetView<LoginController> {
                       padding: EdgeInsets.all(28.0),
                       child: Center(
                         child: Text(
-                          'Login',
+                          'Create Account',
                           style: TextStyle(
                             fontSize: 28,
                             fontWeight: FontWeight.bold,
@@ -64,6 +64,16 @@ class LoginView extends GetView<LoginController> {
                       child: AtomTextField(
                         labelText: 'Email',
                         controller: controller.emailController,
+                        borderRadius: 10,
+                        borderColor: primaryColor,
+                        labelStyle: const TextStyle(color: primaryColor),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 12.0, bottom: 12.0),
+                      child: AtomTextField(
+                        labelText: 'Username',
+                        controller: controller.userNameController,
                         borderRadius: 10,
                         borderColor: primaryColor,
                         labelStyle: const TextStyle(color: primaryColor),
@@ -84,7 +94,7 @@ class LoginView extends GetView<LoginController> {
                       padding: const EdgeInsets.symmetric(horizontal: 80.0),
                       child: ElevatedButton(
                         onPressed: () {
-                          controller.login();
+                          controller.register();
                         },
                         style: ElevatedButton.styleFrom(
                           padding: const EdgeInsets.symmetric(
@@ -96,7 +106,7 @@ class LoginView extends GetView<LoginController> {
                           ),
                         ),
                         child: const Text(
-                          'Login',
+                          'sign up',
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -107,7 +117,7 @@ class LoginView extends GetView<LoginController> {
                     ),
                     TextButton(
                       onPressed: () {
-                        Get.toNamed(Routes.REGISTER);
+                        Get.offAllNamed(Routes.LOGIN);
                       },
                       style: TextButton.styleFrom(
                         padding: const EdgeInsets.symmetric(horizontal: 50),
@@ -116,7 +126,7 @@ class LoginView extends GetView<LoginController> {
                         ),
                         foregroundColor: primaryColor,
                       ),
-                      child: const Text('register'),
+                      child: const Text('Already have an account? Login'),
                     ),
                   ],
                 ),
