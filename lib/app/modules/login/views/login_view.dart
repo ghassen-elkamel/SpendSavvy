@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:spend_savvy/app/core/values/colors.dart';
-import 'package:spend_savvy/app/global_widgets/atom_text_field.dart';
+import 'package:spend_savvy/app/global_widgets/atoms/atom_text_field.dart';
 
 import '../../../routes/app_pages.dart';
 import '../controllers/login_controller.dart';
@@ -72,6 +72,9 @@ class LoginView extends GetView<LoginController> {
                     Padding(
                       padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
                       child: AtomTextField(
+                        onSubmitted: (value) {
+                          controller.login();
+                        },
                         labelText: 'Password',
                         controller: controller.passwordController,
                         borderRadius: 10,

@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../global_widgets/atom_alert_dialog.dart';
+import '../../global_widgets/atoms/atom_alert_dialog.dart';
 import '../values/colors.dart';
 
 showAlertDialog(

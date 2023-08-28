@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../core/values/colors.dart';
+import '../../core/values/colors.dart';
 
 class AtomTextField extends StatelessWidget {
   const AtomTextField({
@@ -8,7 +8,7 @@ class AtomTextField extends StatelessWidget {
     this.labelText = "",
     this.isObscureText = false,
     this.controller,
-    this.onChanged,
+    this.onChanged,   this.onSubmitted,
     this.borderRadius = 0,
     this.borderColor,
     this.labelStyle = const TextStyle(color: primaryColor),
@@ -19,6 +19,7 @@ class AtomTextField extends StatelessWidget {
   final bool isObscureText;
   final TextEditingController? controller;
   final Function(String)? onChanged;
+  final Function(String)? onSubmitted;
   final double borderRadius;
   final Color? borderColor;
 
@@ -27,6 +28,7 @@ class AtomTextField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(18.0),
       child: TextFormField(
+        onFieldSubmitted: onSubmitted,
         controller: controller,
         obscureText: isObscureText,
         onChanged: onChanged,
