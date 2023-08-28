@@ -42,7 +42,7 @@ class HttpParams {
 
   HttpParams({
     required this.endpoint,
-    required this.externalHost,
+    this.externalHost,
     this.headers = const {},
     required this.queryParam,
     this.isUnderAPI = false,

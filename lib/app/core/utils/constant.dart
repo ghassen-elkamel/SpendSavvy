@@ -11,7 +11,7 @@ const String storageGlobalKey = "SpendSavvy";
 const String storageAccessUser = "accessUser";
 
 const String storageLocale = "locale";
-final RxInt selectedIndex = 0.obs;
+final RxInt selectedIndex = 1.obs;
 final iconList=<IconData>[
   Icons.settings,
   Icons.home,

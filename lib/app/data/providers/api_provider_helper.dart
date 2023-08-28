@@ -2,13 +2,17 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:image_picker/image_picker.dart';
+
 
 import '../../core/utils/constant.dart';
 import '../../core/utils/helpers.dart';
+import '../../routes/app_pages.dart';
 import '../models/app_exception.dart';
 import '../services/auth_service.dart';
 import 'api_provider.dart';
@@ -40,6 +44,8 @@ extension Helper on ApiProvider {
             bool refreshed = await authService.refreshToken();
             if (refreshed) {
               return await callback.call();
+            } else {
+              Get.offAllNamed(Routes.LOGIN);
             }
           }
 
@@ -110,8 +116,8 @@ extension Helper on ApiProvider {
       'Content-Type': params.isFormData
           ? 'multipart/form-data'
           : !params.encodeBody
-              ? 'application/x-www-form-urlencoded'
-              : 'application/json',
+          ? 'application/x-www-form-urlencoded'
+          : 'application/json',
       'Accept': 'application/json',
       if (token != null || params.authorization != null)
         'Authorization': params.authorization != null
@@ -121,10 +127,11 @@ extension Helper on ApiProvider {
   }
 
   Future<http.MultipartRequest> getFormDataRequest(
-    String method,
-    Uri uri, {
-    required Map<String, dynamic> body,
-  }) async {
+      String method,
+      Uri uri, {
+        required Map<String, dynamic> body,
+        XFile? file,
+      }) async {
     String? token = AuthService.access?.accessToken;
     var request = http.MultipartRequest(method, uri);
 
@@ -133,7 +140,12 @@ extension Helper on ApiProvider {
         'Authorization': 'Bearer $token',
       });
     }
-
+    if (file != null) {
+      Uint8List bytes = await file.readAsBytes();
+      final httpImage =
+      http.MultipartFile.fromBytes('file', bytes, filename: file.name);
+      request.files.add(httpImage);
+    }
     body.forEach((key, value) {
       if (value != null) {
         request.fields[key] = value;

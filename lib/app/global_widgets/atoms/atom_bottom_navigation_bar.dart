@@ -13,16 +13,17 @@ class AtomNavigationBar extends StatelessWidget {
     return Obx(() {
       return AnimatedBottomNavigationBar(
           icons: iconList,
-          rightCornerRadius: 30,
-          leftCornerRadius: 30,
-          backgroundColor: primaryColor,
+elevation: 0,
+
+          backgroundColor: white,
           activeIndex: selectedIndex.value,
           activeColor: secondaryColor,
-          inactiveColor: Colors.white,
+          inactiveColor: primaryColor,
           gapLocation: GapLocation.none,
-          notchSmoothness: NotchSmoothness.softEdge,
+          notchSmoothness: NotchSmoothness.defaultEdge,
           onTap: (index) => selectedIndex.value = index,
-          //other p
+
+
 
       );
     });
