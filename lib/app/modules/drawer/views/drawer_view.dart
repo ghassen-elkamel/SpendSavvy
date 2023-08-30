@@ -11,64 +11,64 @@ class DrawerView extends GetView<DrawerController> {
   const DrawerView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return AppScaffold(body:ListView(
-padding: EdgeInsets.zero,
-    physics: const BouncingScrollPhysics(),
-    shrinkWrap: true,
-    scrollDirection: Axis.vertical,
-    children: <Widget>[
-    const DrawerHeader(
+    return AppScaffold(body:Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 38),
+      child: ListView(
 
-      padding: EdgeInsets.all(15),
-    decoration: BoxDecoration(
+      physics: const BouncingScrollPhysics(),
+      shrinkWrap: true,
+      scrollDirection: Axis.vertical,
+      children: <Widget>[
+       const SizedBox(
+      height: 100,
+        child: DrawerHeader(
 
-        color: primaryColor,
-      borderRadius: BorderRadius.all( Radius.circular(20),),
 
-    ),
-    child: Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-    CircleAvatar(
-    radius: 40,
-    backgroundImage: AssetImage('assets/profile_picture.jpg'),
-    ),
+        curve: Curves.easeInOut,
+        decoration: BoxDecoration(
 
-    Padding(
-      padding: EdgeInsets.only(top:10),
-      child: Text(
-      'John Doe',
-      style: TextStyle(
-      color: Colors.white,
-      fontSize: 16,
-      fontWeight: FontWeight.bold,
+            color: primaryColor,
+          borderRadius: BorderRadius.all( Radius.circular(20),),
+
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+        CircleAvatar(
+        radius: 40,
+        backgroundImage: AssetImage('assets/profile_picture.jpg'),
+        ),
+
+        Padding(
+          padding: EdgeInsets.all(10),
+          child: Text(
+          'profile',
+          style: TextStyle(
+          color: Colors.white,
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+          ),
+          ),
+        ),
+
+
+        ],
+        ),
+        ),
       ),
-      ),
-    ),
-    Padding(
-      padding: EdgeInsets.all(3.0),
-      child: Text(
-      'johndoe@example.com',
-      style: TextStyle(
-      color: Colors.white,
-        fontSize: 12,
-      ),
-      ),
-    ),
-    ],
-    ),
-    ),
-  AtomCard(leading: Icon(Icons.person_3_rounded), title: 'Profile', subtitle: 'Manage your profile', trailing: '>', onTap: () {
-    }),
-   AtomCard(leading: Icon(Icons.settings), title: 'Settings', subtitle: 'Manage your settings', trailing: '>', onTap: () {
+  AtomCard(leading: const Icon(Icons.person_3_rounded), title: 'Profile', subtitle: 'Manage your profile', trailing: '>', onTap: () {
+      },color:Colors.blueGrey[100]!,),
+   AtomCard(leading: const Icon(Icons.settings), title: 'Settings', subtitle: 'Manage your settings', trailing: '>', onTap: () {
 
-    }),
+      },color:Colors.blueGrey[100]!,),
    AtomCard(leading:  Icon(Icons.logout), title: 'Logout', subtitle: 'Logout from your account', trailing: '>', onTap: () async {
-     Get.offAllNamed('/login');
+       Get.offAllNamed('/login');
 await AuthService().logout();
 
-    }),
-    ],
+      },color:Colors.blueGrey[100]!,),
+      ],
+      ),
     ),);
   }
 }

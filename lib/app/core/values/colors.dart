@@ -6,5 +6,5 @@ const Color accentColor = Color(0xffFFE3E3);
 const Color accentColor2 = Color(0xffFAFFE7);
 const Color neutralColor = Color(0xffCEEEEA);
 const Color textColor = Color(0xff333333);
-const Color white = Color(0xffFFFFFF);
+const Color white = Color(0xfff6f6f6);
 const Color errorColor = Color(0xffFF5252);
