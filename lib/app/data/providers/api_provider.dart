@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:typed_data';
 
 import 'package:http/http.dart' as http;
+import 'package:image_picker/image_picker.dart';
 
 import '../../core/utils/constant.dart';
 import '../../data/providers/api_provider_helper.dart';
@@ -19,16 +21,16 @@ class ApiProvider {
   }
 
   Future<Map<String, dynamic>?> get(HttpParamsGetDelete params,
-      {int attempt = 0}) async {
+      {XFile? file, int attempt = 0}) async {
     dynamic responseJson;
     showLoadingAlert(withLoadingAlert: params.withLoadingAlert);
 
     try {
       final response = await http
           .get(
-            getUri(params),
-            headers: getHeaders(params),
-          )
+        getUri(params),
+        headers: getHeaders(params),
+      )
           .timeout(timeoutDuration);
       responseJson = await verifyResponse(
           response: response,
@@ -42,7 +44,7 @@ class ApiProvider {
   }
 
   Future<Map<String, dynamic>?> post(HttpParamsPostPut params,
-      {int attempt = 0}) async {
+      {XFile? file, int attempt = 0}) async {
     dynamic responseJson;
     dynamic response;
     showLoadingAlert(withLoadingAlert: params.withLoadingAlert);
@@ -56,19 +58,20 @@ class ApiProvider {
       } else {
         response = await http
             .post(
-              uri,
-              body: params.encodeBody ? jsonEncode(params.body) : params.body,
-              headers: getHeaders(params),
-            )
+          uri,
+          body: params.encodeBody ? jsonEncode(params.body) : params.body,
+          headers: getHeaders(params),
+        )
             .timeout(timeoutDuration);
       }
       responseJson = await verifyResponse(
           response: response,
           attempt: attempt,
           callback: () => post(
-                params,
-                attempt: attempt + 1,
-              ));
+            params,
+            file: file,
+            attempt: attempt + 1,
+          ));
     } catch (exception) {
       catchException(exception);
     }
@@ -77,18 +80,18 @@ class ApiProvider {
   }
 
   Future<dynamic> delete(
-    HttpParamsGetDelete params, {
-    int attempt = 0,
-  }) async {
+      HttpParamsGetDelete params, {
+        int attempt = 0,
+      }) async {
     dynamic responseJson;
     showLoadingAlert(withLoadingAlert: params.withLoadingAlert);
 
     try {
       final response = await http
           .delete(
-            getUri(params),
-            headers: getHeaders(params),
-          )
+        getUri(params),
+        headers: getHeaders(params),
+      )
           .timeout(timeoutDuration);
       responseJson = await verifyResponse(
           response: response,
@@ -102,18 +105,15 @@ class ApiProvider {
   }
 
   Future<Map<String, dynamic>?> patch(HttpParamsPostPut params,
-      {int attempt = 0}) async {
+      {XFile? file, int attempt = 0, List<Uint8List>? multipleFiles}) async {
     dynamic responseJson;
     dynamic response;
     showLoadingAlert(withLoadingAlert: params.withLoadingAlert);
     Uri uri = getUri(params);
     try {
       if (params.isFormData) {
-        var request = await getFormDataRequest(
-          "PATCH",
-          uri,
-          body: params.body,
-        );
+        var request = await getFormDataRequest("PATCH", uri,
+            body: params.body, file: file);
 
         var responseStream = await request.send();
 
@@ -121,10 +121,10 @@ class ApiProvider {
       } else {
         response = await http
             .patch(
-              uri,
-              body: params.encodeBody ? jsonEncode(params.body) : params.body,
-              headers: getHeaders(params),
-            )
+          uri,
+          body: params.encodeBody ? jsonEncode(params.body) : params.body,
+          headers: getHeaders(params),
+        )
             .timeout(timeoutDuration);
       }
       responseJson = await verifyResponse(

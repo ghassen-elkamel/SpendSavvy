@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:spend_savvy/app/global_widgets/atom_text_field.dart';
+import 'package:spend_savvy/app/global_widgets/atoms/atom_text_field.dart';
 
 import '../../../core/values/colors.dart';
 import '../../../routes/app_pages.dart';
