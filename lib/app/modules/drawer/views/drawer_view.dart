@@ -11,7 +11,9 @@ class DrawerView extends GetView<DrawerController> {
   const DrawerView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return AppScaffold(body:Padding(
+    return AppScaffold(
+      withAppBar: false,
+      body:Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 38),
       child: ListView(
 
