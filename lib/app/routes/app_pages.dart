@@ -8,6 +8,8 @@ import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/register/bindings/register_binding.dart';
 import '../modules/register/views/register_view.dart';
+import '../modules/spendings/bindings/spendings_binding.dart';
+import '../modules/spendings/views/spendings_view.dart';
 
 part 'app_routes.dart';
 
@@ -36,6 +38,11 @@ class AppPages {
       name: _Paths.DRAWER,
       page: () => const DrawerView(),
       binding: DrawerBinding(),
+    ),
+    GetPage(
+      name: _Paths.SPENDINGS,
+      page: () => const SpendingsView(),
+      binding: SpendingsBinding(),
     ),
   ];
 }

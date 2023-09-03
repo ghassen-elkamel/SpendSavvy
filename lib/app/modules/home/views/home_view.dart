@@ -13,16 +13,16 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Obx(() {
       return AppScaffold(
+        withAppBar: false,
         withBottomNavigationBar: true,
-        body: selectedIndex.value == 0 ?
-        GetRouterOutlet(
-          initialRoute: Routes.DRAWER,
-          key: Get.nestedKey(Routes.DRAWER),
-        )
-            : selectedIndex.value == 1 ? GetRouterOutlet(
-          initialRoute: Routes.HOME,
-          key: Get.nestedKey(Routes.HOME),
-        ) : Text(""),
+        body:
+            selectedIndex.value == 0 ? GetRouterOutlet(
+          initialRoute: Routes.SPENDINGS,
+          key: Get.nestedKey(Routes.SPENDINGS),
+        ):  selectedIndex.value == 1 ? GetRouterOutlet(
+                initialRoute: Routes.SPENDINGS,
+                key: Get.nestedKey(Routes.SPENDINGS))
+                :const Text(""),
 
       );
     });
